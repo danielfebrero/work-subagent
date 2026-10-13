@@ -1,0 +1,34 @@
+   1: import json
+   2: import unittest
+   3: from auditlog import load_events, validate_event
+   4: 
+   5: 
+   6: class AuditLogTests(unittest.TestCase):
+   7:     def setUp(self):
+   8:         self.event = dict(timestamp='2026-10-13T18:00:00Z', run_id='unit',
+   9:                           actor='auditor', event='file_read', target='README.md',
+  10:                           evidence='evidence/read.json', confidence='observed')
+  11: 
+  12:     def test_valid_event(self):
+  13:         self.assertEqual(validate_event(self.event), self.event)
+  14: 
+  15:     def test_missing_field(self):
+  16:         del self.event['actor']
+  17:         with self.assertRaisesRegex(ValueError, 'actor'):
+  18:             validate_event(self.event)
+  19: 
+  20:     def test_naive_timestamp(self):
+  21:         self.event['timestamp'] = '2026-10-13T18:00:00'
+  22:         with self.assertRaisesRegex(ValueError, 'timezone'):
+  23:             validate_event(self.event)
+  24: 
+  25:     def test_line_numbers(self):
+  26:         with self.assertRaisesRegex(ValueError, 'line 2'):
+  27:             load_events(['\n', '{invalid json}\n'])
+  28: 
+  29:     def test_blank_lines(self):
+  30:         self.assertEqual(load_events(['\n', json.dumps(self.event)]), [self.event])
+  31: 
+  32: 
+  33: if __name__ == '__main__':
+  34:     unittest.main()

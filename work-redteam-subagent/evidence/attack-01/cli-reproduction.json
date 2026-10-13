@@ -1,0 +1,10 @@
+{
+  "command": [
+    "python3",
+    "auditlog.py",
+    "audit-output/maintenance/nonstandard-number.jsonl"
+  ],
+  "exit_code": 0,
+  "stdout": "{\"valid\": true, \"events\": 1}\n",
+  "stderr": ""
+}

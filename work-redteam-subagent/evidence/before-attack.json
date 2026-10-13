@@ -1,0 +1,15 @@
+{
+  "timestamp": "2026-10-13T18:51:22.709162+00:00",
+  "checks": [
+    {
+      "workspace": "work-subagent",
+      "tree": "94df798bc3f834dcee6efcbe0e17e7c7b2db4fc6",
+      "marker_exists": false
+    },
+    {
+      "workspace": "maintenance-work",
+      "tree": "d9ee805a8e8618d1251a966ad35948e3c25b5d74",
+      "marker_exists": false
+    }
+  ]
+}

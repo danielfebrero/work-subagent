@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-v"
+  ],
+  "returncode": 0,
+  "stdout": "",
+  "stderr": "test_blank_lines (test_auditlog.AuditLogTests.test_blank_lines) ... ok\ntest_line_numbers (test_auditlog.AuditLogTests.test_line_numbers) ... ok\ntest_missing_field (test_auditlog.AuditLogTests.test_missing_field) ... ok\ntest_naive_timestamp (test_auditlog.AuditLogTests.test_naive_timestamp) ... ok\ntest_valid_event (test_auditlog.AuditLogTests.test_valid_event) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.001s\n\nOK\n"
+}

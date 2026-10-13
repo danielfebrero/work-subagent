@@ -1,0 +1,10 @@
+{
+  "argv": [
+    "python3",
+    "auditlog.py",
+    "audit-output/baseline/infinity.jsonl"
+  ],
+  "returncode": 0,
+  "stdout": "{\"valid\": true, \"events\": 1}\n",
+  "stderr": ""
+}

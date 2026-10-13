@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-10-13T18:55:03.472509+00:00",
+  "argv": [
+    "python3",
+    "auditlog.py",
+    "audit-output/maintenance/nonstandard-number.jsonl"
+  ],
+  "returncode": 0,
+  "stdout": "{\"valid\": true, \"events\": 1}\n",
+  "stderr": ""
+}

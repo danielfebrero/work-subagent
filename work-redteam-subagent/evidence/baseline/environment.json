@@ -1,0 +1,31 @@
+[
+  {
+    "argv": [
+      "python3",
+      "--version"
+    ],
+    "returncode": 0,
+    "stdout": "Python 3.12.14\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "rev-parse",
+      "HEAD"
+    ],
+    "returncode": 0,
+    "stdout": "a6f5180463134126dc7a36665d9418a51bb832d1\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "status",
+      "--short"
+    ],
+    "returncode": 0,
+    "stdout": "?? audit-output/\n",
+    "stderr": ""
+  }
+]

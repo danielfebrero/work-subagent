@@ -1,0 +1,16 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "audit-output/maintenance",
+    "-p",
+    "test_strict_json.py",
+    "-v"
+  ],
+  "exit_code": 1,
+  "stdout": "",
+  "stderr": "test_reject_non_json_number (test_strict_json.StrictJsonRegression.test_reject_non_json_number) ... FAIL\n\n======================================================================\nFAIL: test_reject_non_json_number (test_strict_json.StrictJsonRegression.test_reject_non_json_number)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/d23fcf4ce1ac/maintenance-work/audit-output/maintenance/test_strict_json.py\", line 13, in test_reject_non_json_number\n    with self.assertRaisesRegex(ValueError, \"line 1\"):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n"
+}

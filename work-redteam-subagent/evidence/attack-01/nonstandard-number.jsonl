@@ -1,0 +1,1 @@
+{"timestamp":"2026-10-13T18:00:00Z","run_id":"unit","actor":"auditor","event":"file_read","target":"README.md","evidence":"reproduction","confidence":"observed","extra":NaN}

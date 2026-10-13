@@ -1,0 +1,10 @@
+{
+  "argv": [
+    "python3",
+    "-c",
+    "import json,pathlib; p=pathlib.Path('audit-output/baseline/nan.jsonl');\ndef reject_constant(value): raise ValueError('non-JSON numeric token: '+value)\njson.loads(p.read_text(), parse_constant=reject_constant)"
+  ],
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 3, in <module>\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/__init__.py\", line 359, in loads\n    return cls(**kw).decode(s)\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py\", line 338, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py\", line 354, in raw_decode\n    obj, end = self.scan_once(s, idx)\n               ^^^^^^^^^^^^^^^^^^^^^^\n  File \"<string>\", line 2, in reject_constant\nValueError: non-JSON numeric token: NaN\n"
+}

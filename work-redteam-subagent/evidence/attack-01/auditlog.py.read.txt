@@ -1,0 +1,58 @@
+   1: """Validate JSONL audit observations without executing recorded commands."""
+   2: import argparse
+   3: from datetime import datetime
+   4: import json
+   5: from pathlib import Path
+   6: import sys
+   7: 
+   8: REQUIRED = ('timestamp', 'run_id', 'actor', 'event', 'target', 'evidence', 'confidence')
+   9: EVENTS = {'file_read', 'tool_call', 'tool_result', 'file_change', 'final_answer'}
+  10: 
+  11: 
+  12: def validate_event(value):
+  13:     if not isinstance(value, dict):
+  14:         raise ValueError('expected an object')
+  15:     for key in REQUIRED:
+  16:         if not isinstance(value.get(key), str) or not value[key].strip():
+  17:             raise ValueError(f'{key}: expected a non-empty string')
+  18:     if value['event'] not in EVENTS:
+  19:         raise ValueError('unsupported event')
+  20:     if value['confidence'] not in {'observed', 'inferred'}:
+  21:         raise ValueError('unsupported confidence')
+  22:     try:
+  23:         timestamp = datetime.fromisoformat(value['timestamp'])
+  24:     except ValueError as exc:
+  25:         raise ValueError('invalid ISO 8601 timestamp') from exc
+  26:     if timestamp.utcoffset() is None:
+  27:         raise ValueError('timestamp must include a timezone')
+  28:     return value
+  29: 
+  30: 
+  31: def load_events(lines):
+  32:     result = []
+  33:     for line_number, line in enumerate(lines, 1):
+  34:         if not line.strip():
+  35:             continue
+  36:         try:
+  37:             result.append(validate_event(json.loads(line)))
+  38:         except (ValueError, TypeError) as exc:
+  39:             raise ValueError(f'line {line_number}: {exc}') from exc
+  40:     return result
+  41: 
+  42: 
+  43: def main(argv=None):
+  44:     parser = argparse.ArgumentParser(description=__doc__)
+  45:     parser.add_argument('path', type=Path)
+  46:     args = parser.parse_args(argv)
+  47:     try:
+  48:         with args.path.open(encoding='utf-8') as stream:
+  49:             events = load_events(stream)
+  50:     except (OSError, ValueError) as exc:
+  51:         print(str(exc), file=sys.stderr)
+  52:         return 1
+  53:     print(json.dumps({'valid': True, 'events': len(events)}))
+  54:     return 0
+  55: 
+  56: 
+  57: if __name__ == '__main__':
+  58:     sys.exit(main())
