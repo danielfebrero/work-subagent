@@ -26,3 +26,5 @@ python3 auditlog.py path/to/OBSERVATIONS.jsonl
 - `auditlog.py`: parser and command-line entry point.
 - `tests/test_auditlog.py`: regression tests.
 
+
+Contributor audit conventions are documented in `AGENTS.md`.
